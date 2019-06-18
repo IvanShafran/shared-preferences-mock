@@ -34,8 +34,8 @@ android {
             jacocoOptions {
                 // here goes all jacoco config, for example
                 html.enabled = true
-                xml.enabled = false
-                csv.enabled = false
+                xml.enabled = true
+                csv.enabled = true
                 unitTests.all {
                     testLogging.events = ["passed", "skipped", "failed"]
                 }
