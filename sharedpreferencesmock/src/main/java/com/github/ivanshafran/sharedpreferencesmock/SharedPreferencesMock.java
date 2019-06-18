@@ -67,7 +67,7 @@ final class SharedPreferencesMock implements SharedPreferences {
 
     @Override
     public Editor edit() {
-        return null;
+        return new EditorImpl();
     }
 
     @Override
