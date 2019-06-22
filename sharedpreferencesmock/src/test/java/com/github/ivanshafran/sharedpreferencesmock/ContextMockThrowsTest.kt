@@ -38,17 +38,12 @@ private val CONTEXT_FINAL_FUNCTIONS = listOf(
         getFunctionReference<Context.(Class<Any>) -> Any>(Context::getSystemService)
 )
 
-private val MOCKED_FUNCTIONS = listOf(
-        Context::getSharedPreferences,
-        Context::deleteSharedPreferences
-)
-
 class SPMockContextThrowsTest : Spek({
 
     val contextMock = ContextMock()
     val functions = Context::class.functions
             .filter { it.visibility == KVisibility.PUBLIC }
-            .filter { it !in ANY_FUNCTIONS + CONTEXT_FINAL_FUNCTIONS + MOCKED_FUNCTIONS }
+            .filter { it !in ANY_FUNCTIONS + CONTEXT_FINAL_FUNCTIONS }
 
     fun getCallArgumentMocks(function: KFunction<*>): Array<Any?> {
         return function.parameters

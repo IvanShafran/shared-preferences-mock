@@ -33,30 +33,19 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.concurrent.Executor;
 
 @SuppressLint("WrongConstant")
 final class ContextMock extends Context {
 
-    private final Map<String, SharedPreferences> preferencesMap = new HashMap<>();
-
     @Override
     public SharedPreferences getSharedPreferences(final String name, final int mode) {
-        if (preferencesMap.containsKey(name)) {
-            return preferencesMap.get(name);
-        } else {
-            final SharedPreferences sharedPreferences = new SharedPreferencesMock();
-            preferencesMap.put(name, sharedPreferences);
-            return sharedPreferences;
-        }
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public boolean deleteSharedPreferences(final String name) {
-        preferencesMap.remove(name);
-        return true;
+        throw new UnsupportedOperationException();
     }
 
     @Override

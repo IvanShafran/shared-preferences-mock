@@ -2,27 +2,27 @@ package com.github.ivanshafran.sharedpreferencesmock
 
 import org.spekframework.spek2.Spek
 import org.spekframework.spek2.style.specification.describe
-import kotlin.test.assertFalse
+import kotlin.test.assertTrue
 
 class SPMockBuilderTest : Spek({
     describe("SPMockBuilder") {
-        context("calling createSharedPreferences two times") {
-            val builder = SPMockBuilder()
-            val first = builder.createSharedPreferences()
-            val second = builder.createSharedPreferences()
+        val mockBuilder = SPMockBuilder()
 
-            it("should create new instance every time") {
-                assertFalse { first === second }
+        context("on createSharedPreferences") {
+            it("should return shared preference mock instance") {
+                assertTrue { mockBuilder.createSharedPreferences() is SharedPreferencesMock }
             }
         }
 
-        context("calling createContext two times") {
-            val builder = SPMockBuilder()
-            val first = builder.createContext()
-            val second = builder.createContext()
+        context("on createContext") {
+            it("should return context wrapper mock instance") {
+                assertTrue { mockBuilder.createContext() is SPContextWrapperMock }
+            }
+        }
 
-            it("should create new instance every time") {
-                assertFalse { first === second }
+        context("on wrapContext") {
+            it("should return context wrapper mock instance") {
+                assertTrue { mockBuilder.wrapContext(ContextMock()) is SPContextWrapperMock }
             }
         }
     }
