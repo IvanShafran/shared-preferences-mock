@@ -38,7 +38,7 @@ import java.util.Map;
 import java.util.concurrent.Executor;
 
 @SuppressLint("WrongConstant")
-final class SPMockContext extends Context {
+final class ContextMock extends Context {
 
     private final Map<String, SharedPreferences> preferencesMap = new HashMap<>();
 

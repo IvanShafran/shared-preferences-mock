@@ -4,13 +4,13 @@ import org.spekframework.spek2.Spek
 import org.spekframework.spek2.style.specification.describe
 import kotlin.test.assertTrue
 
-class SpMockContextSharedPreferencesTest : Spek({
+class ContextMockSharedPreferencesTest : Spek({
 
     describe("context mock") {
-        var context = SPMockContext()
+        var context = ContextMock()
 
         beforeEachTest {
-            context = SPMockContext()
+            context = ContextMock()
         }
 
         context("on first preferences request") {
