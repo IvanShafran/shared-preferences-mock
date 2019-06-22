@@ -4,6 +4,7 @@ import android.content.SharedPreferences
 import org.spekframework.spek2.Spek
 import org.spekframework.spek2.style.specification.describe
 import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 
 class SharedPreferencesPutGetTests : Spek({
 
@@ -68,6 +69,14 @@ class SharedPreferencesPutGetTests : Spek({
 
             it("should return correct boolean by key") {
                 assertEquals(booleanValue, mock.getBoolean(booleanKey, true))
+            }
+
+            it("should return map with all values") {
+                assertTrue { mock.all.size == 6 }
+            }
+
+            it("should contains put key") {
+                assertTrue { mock.contains(stringKey) }
             }
         }
     }
