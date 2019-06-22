@@ -12,7 +12,17 @@ class SPMockBuilderTest : Spek({
             val second = builder.createSharedPreferences()
 
             it("should create new instance every time") {
-                assertFalse { first == second }
+                assertFalse { first === second }
+            }
+        }
+
+        context("calling createContext two times") {
+            val builder = SPMockBuilder()
+            val first = builder.createContext()
+            val second = builder.createContext()
+
+            it("should create new instance every time") {
+                assertFalse { first === second }
             }
         }
     }
