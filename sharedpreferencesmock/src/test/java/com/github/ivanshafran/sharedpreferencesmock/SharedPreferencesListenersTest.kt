@@ -4,6 +4,7 @@ import android.content.SharedPreferences
 import org.spekframework.spek2.Spek
 import org.spekframework.spek2.style.specification.describe
 import kotlin.test.assertEquals
+import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 class SharedPreferencesListenersTest : Spek({
@@ -11,9 +12,11 @@ class SharedPreferencesListenersTest : Spek({
     class ListenerMock : SharedPreferences.OnSharedPreferenceChangeListener {
         private var eventSharedPreferences: SharedPreferences? = null
         private var eventKey: String? = null
+        private var isCalled = false
         override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences, key: String) {
             eventSharedPreferences = sharedPreferences
             eventKey = key
+            isCalled = true
         }
 
         fun assertSharedPreferences(instance: SharedPreferences?) {
@@ -22,6 +25,10 @@ class SharedPreferencesListenersTest : Spek({
 
         fun assertKey(key: String?) {
             assertEquals(eventKey, key)
+        }
+
+        fun assertNotCalled() {
+            assertFalse(isCalled)
         }
     }
 
@@ -43,6 +50,33 @@ class SharedPreferencesListenersTest : Spek({
             }
         }
 
+        context("register listener and remove string") {
+            beforeEachTest {
+                sharedPreferences.edit().putString(stringKey, "").apply()
+                sharedPreferences.registerOnSharedPreferenceChangeListener(listener)
+                sharedPreferences.edit().remove(stringKey).apply()
+            }
+
+            it("should call listener with string key and shared preferences instance") {
+                listener.assertKey(stringKey)
+                listener.assertSharedPreferences(sharedPreferences)
+            }
+        }
+
+        context("register listener and clear all") {
+            beforeEachTest {
+                sharedPreferences.edit().putString(stringKey, "").apply()
+                sharedPreferences.registerOnSharedPreferenceChangeListener(listener)
+                sharedPreferences.edit().clear().apply()
+            }
+
+            it("should not call listener") {
+                // ?: see original implementation
+                // https://android.googlesource.com/platform/frameworks/base/+/refs/heads/master/core/java/android/app/SharedPreferencesImpl.java#498
+                listener.assertNotCalled()
+            }
+        }
+
         context("register and then unregister listener and put string") {
             beforeEachTest {
                 sharedPreferences.registerOnSharedPreferenceChangeListener(listener)
@@ -51,8 +85,7 @@ class SharedPreferencesListenersTest : Spek({
             }
 
             it("should not call listener") {
-                listener.assertKey(null)
-                listener.assertSharedPreferences(null)
+                listener.assertNotCalled()
             }
         }
 
