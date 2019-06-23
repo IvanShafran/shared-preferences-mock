@@ -112,6 +112,19 @@ class SharedPreferencesListenersTest : Spek({
             }
         }
 
+        context("register and put new value to the existing item") {
+            beforeEachTest {
+                sharedPreferences.edit().putString(stringKey, "old").apply()
+                sharedPreferences.registerOnSharedPreferenceChangeListener(listener)
+                sharedPreferences.edit().putString(stringKey, "new").apply()
+            }
+
+            it("should call listener with string key and shared preferences instance") {
+                listener.assertKey(stringKey)
+                listener.assertSharedPreferences(sharedPreferences)
+            }
+        }
+
     }
 
 })
