@@ -6,7 +6,7 @@ import kotlin.test.assertTrue
 
 class SPMockBuilderTest : Spek({
     describe("SPMockBuilder") {
-        val mockBuilder = SPMockBuilder()
+        val mockBuilder by memoized { SPMockBuilder() }
 
         context("on createSharedPreferences") {
             it("should return shared preference mock instance") {

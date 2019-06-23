@@ -1,5 +1,6 @@
 package com.github.ivanshafran.sharedpreferencesmock
 
+import android.content.SharedPreferences
 import org.spekframework.spek2.Spek
 import org.spekframework.spek2.style.specification.describe
 import kotlin.test.assertTrue
@@ -7,11 +8,7 @@ import kotlin.test.assertTrue
 class SPContextWrapperMockSharedPreferencesTest : Spek({
 
     describe("context mock") {
-        var context = SPContextWrapperMock(ContextMock())
-
-        beforeEachTest {
-            context = SPContextWrapperMock(ContextMock())
-        }
+        val context by memoized { SPContextWrapperMock(ContextMock()) }
 
         context("on first preferences request") {
 
@@ -37,9 +34,14 @@ class SPContextWrapperMockSharedPreferencesTest : Spek({
         context("after preferences is deleted") {
 
             context("on the same preference request") {
-                val first = context.getSharedPreferences("", 0)
-                context.deleteSharedPreferences("")
-                val second = context.getSharedPreferences("", 0)
+                lateinit var first: SharedPreferences
+                lateinit var second: SharedPreferences
+
+                beforeEachTest {
+                    first = context.getSharedPreferences("", 0)
+                    context.deleteSharedPreferences("")
+                    second = context.getSharedPreferences("", 0)
+                }
 
                 it("should return new instance") {
                     assertTrue { first !== second }

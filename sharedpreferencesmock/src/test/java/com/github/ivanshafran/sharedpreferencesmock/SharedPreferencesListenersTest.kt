@@ -25,27 +25,30 @@ class SharedPreferencesListenersTest : Spek({
         }
     }
 
+    val stringKey = "key"
+
     describe("shared preferences listeners") {
-        val stringKey = "key"
+        val sharedPreferences by memoized { SPMockBuilder().createSharedPreferences() }
+        val listener by memoized { ListenerMock() }
 
         context("register listener and put string") {
-            val mock = SPMockBuilder().createSharedPreferences()
-            val listener = ListenerMock()
-            mock.registerOnSharedPreferenceChangeListener(listener)
-            mock.edit().putString(stringKey, "").apply()
+            beforeEachTest {
+                sharedPreferences.registerOnSharedPreferenceChangeListener(listener)
+                sharedPreferences.edit().putString(stringKey, "").apply()
+            }
 
             it("should call listener with string key and shared preferences instance") {
                 listener.assertKey(stringKey)
-                listener.assertSharedPreferences(mock)
+                listener.assertSharedPreferences(sharedPreferences)
             }
         }
 
         context("register and then unregister listener and put string") {
-            val mock = SPMockBuilder().createSharedPreferences()
-            val listener = ListenerMock()
-            mock.registerOnSharedPreferenceChangeListener(listener)
-            mock.unregisterOnSharedPreferenceChangeListener(listener)
-            mock.edit().putString(stringKey, "").apply()
+            beforeEachTest {
+                sharedPreferences.registerOnSharedPreferenceChangeListener(listener)
+                sharedPreferences.unregisterOnSharedPreferenceChangeListener(listener)
+                sharedPreferences.edit().putString(stringKey, "").apply()
+            }
 
             it("should not call listener") {
                 listener.assertKey(null)

@@ -9,7 +9,7 @@ class SharedPreferencesDefaultValuesTest : Spek({
     describe("shared preferences mock") {
         context("no elements set") {
 
-            val mock = SPMockBuilder().createSharedPreferences()
+            val mock by memoized { SPMockBuilder().createSharedPreferences() }
 
             it("should return default value for getString") {
                 val defaultString = "default string"

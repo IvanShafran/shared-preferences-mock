@@ -1,14 +1,12 @@
 package com.github.ivanshafran.sharedpreferencesmock
 
-import android.content.SharedPreferences
 import org.spekframework.spek2.Spek
+import org.spekframework.spek2.lifecycle.CachingMode
 import org.spekframework.spek2.style.specification.describe
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
 class SharedPreferencesPutGetTests : Spek({
-
-    // TEST DATA
 
     val stringKey = "string key"
     val stringValue = "string value"
@@ -28,55 +26,52 @@ class SharedPreferencesPutGetTests : Spek({
     val booleanKey = "boolean key"
     val booleanValue = true
 
-    fun putAllTypes(sharedPreferences: SharedPreferences) {
-        sharedPreferences
-                .edit()
-                .putString(stringKey, stringValue)
-                .putStringSet(stringSetKey, stringSetValue)
-                .putInt(intKey, intValue)
-                .putLong(longKey, longValue)
-                .putFloat(floatKey, floatValue)
-                .putBoolean(booleanKey, booleanValue)
-                .commit()
-    }
-
-    // TEST
-
     describe("shared preferences mock") {
+        val sharedPreferences by memoized(CachingMode.SCOPE) { SPMockBuilder().createSharedPreferences() }
+
         context("put values for each type via edit and commit") {
-            val mock = SPMockBuilder().createSharedPreferences()
-            putAllTypes(mock)
+            beforeGroup {
+                sharedPreferences
+                        .edit()
+                        .putString(stringKey, stringValue)
+                        .putStringSet(stringSetKey, stringSetValue)
+                        .putInt(intKey, intValue)
+                        .putLong(longKey, longValue)
+                        .putFloat(floatKey, floatValue)
+                        .putBoolean(booleanKey, booleanValue)
+                        .commit()
+            }
 
             it("should return correct string by key") {
-                assertEquals(stringValue, mock.getString(stringKey, "default"))
+                assertEquals(stringValue, sharedPreferences.getString(stringKey, "default"))
             }
 
             it("should return correct string set by key") {
-                assertEquals(stringSetValue, mock.getStringSet(stringSetKey, setOf()))
+                assertEquals(stringSetValue, sharedPreferences.getStringSet(stringSetKey, setOf()))
             }
 
             it("should return correct int by key") {
-                assertEquals(intValue, mock.getInt(intKey, 0))
+                assertEquals(intValue, sharedPreferences.getInt(intKey, 0))
             }
 
             it("should return correct long by key") {
-                assertEquals(longValue, mock.getLong(longKey, 0L))
+                assertEquals(longValue, sharedPreferences.getLong(longKey, 0L))
             }
 
             it("should return correct float by key") {
-                assertEquals(floatValue, mock.getFloat(floatKey, 0f))
+                assertEquals(floatValue, sharedPreferences.getFloat(floatKey, 0f))
             }
 
             it("should return correct boolean by key") {
-                assertEquals(booleanValue, mock.getBoolean(booleanKey, true))
+                assertEquals(booleanValue, sharedPreferences.getBoolean(booleanKey, true))
             }
 
             it("should return map with all values") {
-                assertTrue { mock.all.size == 6 }
+                assertTrue { sharedPreferences.all.size == 6 }
             }
 
             it("should contains put key") {
-                assertTrue { mock.contains(stringKey) }
+                assertTrue { sharedPreferences.contains(stringKey) }
             }
         }
     }
