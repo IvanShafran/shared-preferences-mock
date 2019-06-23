@@ -89,6 +89,29 @@ class SharedPreferencesListenersTest : Spek({
             }
         }
 
+        context("register and remove nonexistent item") {
+            beforeEachTest {
+                sharedPreferences.registerOnSharedPreferenceChangeListener(listener)
+                sharedPreferences.edit().remove(stringKey).apply()
+            }
+
+            it("should not call listener") {
+                listener.assertNotCalled()
+            }
+        }
+
+        context("register and put the same existing item") {
+            beforeEachTest {
+                sharedPreferences.edit().putString(stringKey, "").apply()
+                sharedPreferences.registerOnSharedPreferenceChangeListener(listener)
+                sharedPreferences.edit().putString(stringKey, "").apply()
+            }
+
+            it("should not call listener") {
+                listener.assertNotCalled()
+            }
+        }
+
     }
 
 })
