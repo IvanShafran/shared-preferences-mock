@@ -8,7 +8,7 @@ import kotlin.test.assertTrue
 class SPContextWrapperMockSharedPreferencesTest : Spek({
 
     describe("context mock") {
-        val context by memoized { SPContextWrapperMock(ContextMock()) }
+        val context by memoized { SPContextWrapperMock(ContextMock(), SharedPreferencesFactory(false)) }
 
         context("on first preferences request") {
 

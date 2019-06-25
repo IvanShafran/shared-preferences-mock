@@ -3,6 +3,7 @@ package com.github.ivanshafran.sharedpreferencesmock;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.SharedPreferences;
+import android.support.annotation.NonNull;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,9 +11,11 @@ import java.util.Map;
 public class SPContextWrapperMock extends ContextWrapper {
 
     private final Map<String, SharedPreferences> preferencesMap = new HashMap<>();
+    private final SharedPreferencesFactory factory;
 
-    public SPContextWrapperMock(final Context base) {
+    public SPContextWrapperMock(@NonNull final Context base, @NonNull final SharedPreferencesFactory factory) {
         super(base);
+        this.factory = factory;
     }
 
     @Override
@@ -20,7 +23,7 @@ public class SPContextWrapperMock extends ContextWrapper {
         if (preferencesMap.containsKey(name)) {
             return preferencesMap.get(name);
         } else {
-            final SharedPreferences sharedPreferences = new SharedPreferencesMock();
+            final SharedPreferences sharedPreferences = factory.create();
             preferencesMap.put(name, sharedPreferences);
             return sharedPreferences;
         }
