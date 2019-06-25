@@ -1,7 +1,10 @@
 package com.github.ivanshafran.sharedpreferencesmock
 
+import com.github.ivanshafran.sharedpreferencesmock.internal.ContextMock
+import com.github.ivanshafran.sharedpreferencesmock.internal.SPContextWrapperMock
 import org.spekframework.spek2.Spek
 import org.spekframework.spek2.style.specification.describe
+import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
 
 class SPMockBuilderTest : Spek({
@@ -9,8 +12,8 @@ class SPMockBuilderTest : Spek({
         val mockBuilder by memoized { SPMockBuilder() }
 
         context("on createSharedPreferences") {
-            it("should return shared preference mock instance") {
-                assertTrue { mockBuilder.createSharedPreferences() is SharedPreferencesMock }
+            it("should return not null shared preference mock instance") {
+                assertNotNull(mockBuilder.createSharedPreferences())
             }
         }
 

@@ -1,4 +1,4 @@
-package com.github.ivanshafran.sharedpreferencesmock;
+package com.github.ivanshafran.sharedpreferencesmock.internal;
 
 import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
@@ -36,7 +36,7 @@ import java.io.InputStream;
 import java.util.concurrent.Executor;
 
 @SuppressLint("WrongConstant")
-final class ContextMock extends Context {
+public class ContextMock extends Context {
 
     @Override
     public SharedPreferences getSharedPreferences(final String name, final int mode) {

@@ -1,11 +1,11 @@
-package com.github.ivanshafran.sharedpreferencesmock;
+package com.github.ivanshafran.sharedpreferencesmock.internal;
 
 import android.support.annotation.Nullable;
 
 import java.util.Map;
 import java.util.Set;
 
-class ThreadSafeSharedPreferencesMock extends SharedPreferencesMock {
+final class ThreadSafeSharedPreferencesMock extends SharedPreferencesMock {
 
     private final Object lock = new Object();
 

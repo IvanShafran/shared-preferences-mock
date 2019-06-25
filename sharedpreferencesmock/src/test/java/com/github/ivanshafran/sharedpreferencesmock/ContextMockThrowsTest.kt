@@ -3,6 +3,7 @@ package com.github.ivanshafran.sharedpreferencesmock
 import android.content.Context
 import android.content.res.TypedArray
 import android.util.AttributeSet
+import com.github.ivanshafran.sharedpreferencesmock.internal.ContextMock
 import org.spekframework.spek2.Spek
 import org.spekframework.spek2.style.specification.describe
 import java.lang.reflect.InvocationTargetException

@@ -1,4 +1,4 @@
-package com.github.ivanshafran.sharedpreferencesmock
+package com.github.ivanshafran.sharedpreferencesmock.internal
 
 import android.content.SharedPreferences
 import org.spekframework.spek2.Spek

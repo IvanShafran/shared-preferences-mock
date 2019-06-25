@@ -1,8 +1,8 @@
-package com.github.ivanshafran.sharedpreferencesmock;
+package com.github.ivanshafran.sharedpreferencesmock.internal;
 
 import android.content.SharedPreferences;
 
-class SharedPreferencesFactory {
+public class SharedPreferencesFactory {
 
     private boolean isThreadSafe;
 

@@ -4,6 +4,10 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 
+import com.github.ivanshafran.sharedpreferencesmock.internal.ContextMock;
+import com.github.ivanshafran.sharedpreferencesmock.internal.SPContextWrapperMock;
+import com.github.ivanshafran.sharedpreferencesmock.internal.SharedPreferencesFactory;
+
 public final class SPMockBuilder {
 
     private boolean isThreadSafe = false;

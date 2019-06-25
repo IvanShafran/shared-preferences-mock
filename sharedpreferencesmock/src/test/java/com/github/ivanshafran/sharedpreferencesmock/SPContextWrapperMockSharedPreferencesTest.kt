@@ -1,19 +1,28 @@
 package com.github.ivanshafran.sharedpreferencesmock
 
 import android.content.SharedPreferences
+import com.github.ivanshafran.sharedpreferencesmock.internal.ContextMock
+import com.github.ivanshafran.sharedpreferencesmock.internal.SPContextWrapperMock
+import com.github.ivanshafran.sharedpreferencesmock.internal.SharedPreferencesFactory
 import org.spekframework.spek2.Spek
 import org.spekframework.spek2.style.specification.describe
+import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
 
 class SPContextWrapperMockSharedPreferencesTest : Spek({
 
     describe("context mock") {
-        val context by memoized { SPContextWrapperMock(ContextMock(), SharedPreferencesFactory(false)) }
+        val context by memoized {
+            SPContextWrapperMock(
+                    ContextMock(),
+                    SharedPreferencesFactory(false)
+            )
+        }
 
         context("on first preferences request") {
 
-            it("should return non null value of SharedPreferencesMock") {
-                assertTrue { context.getSharedPreferences("", 0) is SharedPreferencesMock }
+            it("should return non null value of SharedPreferences") {
+                assertNotNull(context.getSharedPreferences("", 0))
             }
         }
 

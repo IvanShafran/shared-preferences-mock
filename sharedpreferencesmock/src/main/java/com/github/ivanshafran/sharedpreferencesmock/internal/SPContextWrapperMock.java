@@ -1,4 +1,4 @@
-package com.github.ivanshafran.sharedpreferencesmock;
+package com.github.ivanshafran.sharedpreferencesmock.internal;
 
 import android.content.Context;
 import android.content.ContextWrapper;
