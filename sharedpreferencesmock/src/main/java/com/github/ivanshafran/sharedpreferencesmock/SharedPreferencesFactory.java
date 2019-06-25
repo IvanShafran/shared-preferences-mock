@@ -12,7 +12,7 @@ class SharedPreferencesFactory {
 
     public SharedPreferences create() {
         if (isThreadSafe) {
-            return new ThreadSafeSharedPreferencesMock(new SharedPreferencesMock());
+            return new ThreadSafeSharedPreferencesMock();
         } else {
             return new SharedPreferencesMock();
         }

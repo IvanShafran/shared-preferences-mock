@@ -1,25 +1,18 @@
 package com.github.ivanshafran.sharedpreferencesmock;
 
-import android.content.SharedPreferences;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import java.util.Map;
 import java.util.Set;
 
-class ThreadSafeSharedPreferencesMock implements SharedPreferences {
+class ThreadSafeSharedPreferencesMock extends SharedPreferencesMock {
 
     private final Object lock = new Object();
-    private final SharedPreferences sharedPreferences;
-
-    public ThreadSafeSharedPreferencesMock(@NonNull final SharedPreferences sharedPreferences) {
-        this.sharedPreferences = sharedPreferences;
-    }
 
     @Override
     public Map<String, ?> getAll() {
         synchronized (lock) {
-            return sharedPreferences.getAll();
+            return super.getAll();
         }
     }
 
@@ -27,7 +20,7 @@ class ThreadSafeSharedPreferencesMock implements SharedPreferences {
     @Override
     public String getString(final String key, @Nullable final String defValue) {
         synchronized (lock) {
-            return sharedPreferences.getString(key, defValue);
+            return super.getString(key, defValue);
         }
     }
 
@@ -35,77 +28,72 @@ class ThreadSafeSharedPreferencesMock implements SharedPreferences {
     @Override
     public Set<String> getStringSet(final String key, @Nullable final Set<String> defValues) {
         synchronized (lock) {
-            return sharedPreferences.getStringSet(key, defValues);
+            return super.getStringSet(key, defValues);
         }
     }
 
     @Override
     public int getInt(final String key, final int defValue) {
         synchronized (lock) {
-            return sharedPreferences.getInt(key, defValue);
+            return super.getInt(key, defValue);
         }
     }
 
     @Override
     public long getLong(final String key, final long defValue) {
         synchronized (lock) {
-            return sharedPreferences.getLong(key, defValue);
+            return super.getLong(key, defValue);
         }
     }
 
     @Override
     public float getFloat(final String key, final float defValue) {
         synchronized (lock) {
-            return sharedPreferences.getFloat(key, defValue);
+            return super.getFloat(key, defValue);
         }
     }
 
     @Override
     public boolean getBoolean(final String key, final boolean defValue) {
         synchronized (lock) {
-            return sharedPreferences.getBoolean(key, defValue);
+            return super.getBoolean(key, defValue);
         }
     }
 
     @Override
     public boolean contains(final String key) {
         synchronized (lock) {
-            return sharedPreferences.contains(key);
+            return super.contains(key);
         }
     }
 
     @Override
     public Editor edit() {
-        return new ThreadSafeEditor(sharedPreferences.edit());
+        return new ThreadSafeEditor();
     }
 
     @Override
     public void registerOnSharedPreferenceChangeListener(final OnSharedPreferenceChangeListener listener) {
         synchronized (lock) {
-            sharedPreferences.registerOnSharedPreferenceChangeListener(listener);
+            super.registerOnSharedPreferenceChangeListener(listener);
         }
     }
 
     @Override
     public void unregisterOnSharedPreferenceChangeListener(final OnSharedPreferenceChangeListener listener) {
         synchronized (lock) {
-            sharedPreferences.unregisterOnSharedPreferenceChangeListener(listener);
+            super.unregisterOnSharedPreferenceChangeListener(listener);
         }
     }
 
-    public class ThreadSafeEditor implements SharedPreferences.Editor {
+    public class ThreadSafeEditor extends SharedPreferencesMock.EditorImpl {
 
         private final Object editorLock = new Object();
-        private final Editor editor;
-
-        public ThreadSafeEditor(@NonNull final Editor editor) {
-            this.editor = editor;
-        }
 
         @Override
         public Editor putString(final String key, @Nullable final String value) {
             synchronized (editorLock) {
-                editor.putString(key, value);
+                super.putString(key, value);
                 return this;
             }
         }
@@ -113,7 +101,7 @@ class ThreadSafeSharedPreferencesMock implements SharedPreferences {
         @Override
         public Editor putStringSet(final String key, @Nullable final Set<String> values) {
             synchronized (editorLock) {
-                editor.putStringSet(key, values);
+                super.putStringSet(key, values);
                 return this;
             }
         }
@@ -121,7 +109,7 @@ class ThreadSafeSharedPreferencesMock implements SharedPreferences {
         @Override
         public Editor putInt(final String key, final int value) {
             synchronized (editorLock) {
-                editor.putInt(key, value);
+                super.putInt(key, value);
                 return this;
             }
         }
@@ -129,7 +117,7 @@ class ThreadSafeSharedPreferencesMock implements SharedPreferences {
         @Override
         public Editor putLong(final String key, final long value) {
             synchronized (editorLock) {
-                editor.putLong(key, value);
+                super.putLong(key, value);
                 return this;
             }
         }
@@ -137,7 +125,7 @@ class ThreadSafeSharedPreferencesMock implements SharedPreferences {
         @Override
         public Editor putFloat(final String key, final float value) {
             synchronized (editorLock) {
-                editor.putFloat(key, value);
+                super.putFloat(key, value);
                 return this;
             }
         }
@@ -145,7 +133,7 @@ class ThreadSafeSharedPreferencesMock implements SharedPreferences {
         @Override
         public Editor putBoolean(final String key, final boolean value) {
             synchronized (editorLock) {
-                editor.putBoolean(key, value);
+                super.putBoolean(key, value);
                 return this;
             }
         }
@@ -153,7 +141,7 @@ class ThreadSafeSharedPreferencesMock implements SharedPreferences {
         @Override
         public Editor remove(final String key) {
             synchronized (editorLock) {
-                editor.remove(key);
+                super.remove(key);
                 return this;
             }
         }
@@ -161,7 +149,7 @@ class ThreadSafeSharedPreferencesMock implements SharedPreferences {
         @Override
         public Editor clear() {
             synchronized (editorLock) {
-                editor.clear();
+                super.clear();
                 return this;
             }
         }
@@ -170,7 +158,7 @@ class ThreadSafeSharedPreferencesMock implements SharedPreferences {
         public boolean commit() {
             synchronized (editorLock) {
                 synchronized (lock) {
-                    return editor.commit();
+                    return super.commit();
                 }
             }
         }
@@ -179,7 +167,7 @@ class ThreadSafeSharedPreferencesMock implements SharedPreferences {
         public void apply() {
             synchronized (editorLock) {
                 synchronized (lock) {
-                    editor.apply();
+                    super.apply();
                 }
             }
         }

@@ -7,29 +7,33 @@ import kotlin.test.assertTrue
 
 class SharedPreferencesDeleteTest : Spek({
 
-    describe("deleting elements from shared preferences mock") {
-        val sharedPreferences by memoized { SPMockBuilder().createSharedPreferences() }
-
-        context("on calling clear in edit builder") {
-            beforeEachTest {
-                sharedPreferences.edit().putInt("1", 1).putBoolean("2", false).commit()
-                sharedPreferences.edit().clear().commit()
+    for (isThreadSafe in listOf(false, true)) {
+        describe("deleting elements from shared preferences mock with thread safety: $isThreadSafe") {
+            val sharedPreferences by memoized {
+                SPMockBuilder().setThreadSafe(isThreadSafe).createSharedPreferences()
             }
 
-            it("should delete all items") {
-                assertTrue(sharedPreferences.all.isEmpty())
-            }
-        }
+            context("on calling clear in edit builder") {
+                beforeEachTest {
+                    sharedPreferences.edit().putInt("1", 1).putBoolean("2", false).commit()
+                    sharedPreferences.edit().clear().commit()
+                }
 
-        context("on calling remove in edit builder") {
-            beforeEachTest {
-                sharedPreferences.edit().putInt("1", 1).putBoolean("2", false).commit()
-                sharedPreferences.edit().remove("1").commit()
+                it("should delete all items") {
+                    assertTrue(sharedPreferences.all.isEmpty())
+                }
             }
 
-            it("should remove only specific item") {
-                assertFalse(sharedPreferences.contains("1"))
-                assertTrue(sharedPreferences.contains("2"))
+            context("on calling remove in edit builder") {
+                beforeEachTest {
+                    sharedPreferences.edit().putInt("1", 1).putBoolean("2", false).commit()
+                    sharedPreferences.edit().remove("1").commit()
+                }
+
+                it("should remove only specific item") {
+                    assertFalse(sharedPreferences.contains("1"))
+                    assertTrue(sharedPreferences.contains("2"))
+                }
             }
         }
     }

@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-final class SharedPreferencesMock implements SharedPreferences {
+class SharedPreferencesMock implements SharedPreferences {
 
     private final Map<String, Object> preferencesMap = new HashMap<>();
     private final Set<OnSharedPreferenceChangeListener> listeners = new HashSet<>();
