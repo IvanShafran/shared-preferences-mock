@@ -122,6 +122,10 @@ class SharedPreferencesListenersTest : Spek({
                     sharedPreferences.edit().putString(stringKey, "new").apply()
                 }
 
+                it("should call listener with string key and shared preferences instance") {
+                    listener.assertKey(stringKey)
+                    listener.assertSharedPreferences(sharedPreferences)
+                }
             }
         }
     }
