@@ -101,13 +101,11 @@ public class ShowMessageLogicTest {
 
 1. Create `CounterPreferences` interface and implement Java version for test by yourself
 
-Disadvantages:
 - Doesn't test `CounterPreferences` implementation
 - Requires boilerplate code in tests
 
 2. Use [Mockito](https://github.com/mockito/mockito)
 
-Disadvantages:
 - Doesn't test `CounterPreferences` implementation
 
 3. Use [Robolectric](https://github.com/robolectric/robolectric)
