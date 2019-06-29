@@ -31,7 +31,7 @@ Add the dependency:
 
 ```groovy
 dependencies {
-    testImplementation 'com.github.IvanShafran:shared-preferences-mock:Tag'
+    testImplementation 'com.github.IvanShafran:shared-preferences-mock:1.0'
 }
 ```
 
