@@ -124,6 +124,7 @@ public class ShowMessageLogicTest {
 | Does it have a global state? | Yes, it synchronizes via files. It is one of the main features.       | No, it is better for unit tests.                                      |
 | Does API synchronous?      | Yes, but some methods schedule asynchronous operations.  For example: `apply`. | All methods are synchronous and are performed immediately.            |
 | Is it thread safe?         | Yes.                                                                           | No by default, because unit tests should be fast as possible for CI. You can enable it with `setThreadSafety(true)` in `SPMockBuilder`.|
+| Where are listeners called? | Main thread | Thread on which `apply` or `commit` are called |
 | Does it follow docs?       | Partly no. `SharedPreferencesImpl` differs from docs in not the most important cases. | Library mimics `SharedPreferencesImpl` differences from docs.|
 
 ## License
