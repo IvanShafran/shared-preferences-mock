@@ -9,7 +9,7 @@ Shared preferences mock is the lightweight library let you increase coverage of 
 
 Unit test on Android uses a framework mock where every method throws `UnsupportedOperationException` or does nothing depending on your settings in Gradle `testOptions`. 
 
-In unit tests, we mostly test business logic, which often depends on preferences. Therefore you should mock all classes which use `SharedPreferences` inside. That is a lot of boilerplate in tests. Moreover, because of this limitation, we never test preferences class code. However, it also may have bugs.
+In unit tests, we mostly test business logic, which often depends on preferences. Therefore you should mock all classes which use `SharedPreferences` inside. It is a lot of boilerplate in tests. Moreover, because of this limitation, we never test preferences class code. However, it also may have bugs.
 
 ## Under the hood
 
