@@ -3,7 +3,7 @@ package com.github.ivanshafran.sharedpreferencesmock.internal;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.SharedPreferences;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -2,7 +2,7 @@ package com.github.ivanshafran.sharedpreferencesmock;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.github.ivanshafran.sharedpreferencesmock.internal.ContextMock;
 import com.github.ivanshafran.sharedpreferencesmock.internal.SPContextWrapperMock;
