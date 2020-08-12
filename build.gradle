@@ -17,10 +17,6 @@ buildscript {
     }
 }
 
-plugins {
-    id "com.github.plnice.canidropjetifier" version "0.5"
-}
-
 allprojects {
     repositories {
         google()
