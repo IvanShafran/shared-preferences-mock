@@ -5,12 +5,6 @@ android:
     - tools
     - platform-tools
 
-    # The BuildTools version used by your project
-    - build-tools-28.0.3
-
-    # The SDK version used to compile your project
-    - android-28
-
 licenses:
     - android-sdk-preview-license-.+
     - android-sdk-license-.+
@@ -18,6 +12,8 @@ licenses:
 
 before_install:
     - chmod +x gradlew
+    - yes | sdkmanager "platforms;android-29"
+    - yes | sdkmanager "build-tools;29.0.2"
 
 script:
     - ./gradlew clean jacocoTestReport
