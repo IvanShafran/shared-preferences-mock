@@ -31,9 +31,24 @@ Add the dependency:
 
 ```groovy
 dependencies {
-    testImplementation 'com.github.IvanShafran:shared-preferences-mock:1.0'
+    testImplementation 'com.github.IvanShafran:shared-preferences-mock:1.1'
 }
 ```
+
+## Release notes
+
+<details><summary><b>Click to see release notes</b></summary>
+
+
+<b>Version 1.1</b>
+    
+* Android X support. Thanks to [Neal Sanche](https://github.com/nealsanche)
+
+<b>Version 1.0</b>
+
+* First release
+
+</details>
 
 ## Usage
 
