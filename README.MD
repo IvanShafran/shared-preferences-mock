@@ -35,6 +35,17 @@ dependencies {
 }
 ```
 
+Enable 1.8 Java compile option if it's not enabled yet:
+
+```groovy
+android {
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+```
+
 ## Release notes
 
 <details><summary><b>Click to see release notes</b></summary>
