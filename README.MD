@@ -1,7 +1,7 @@
 # Shared Preferences Mock
 [![Build Status](https://api.travis-ci.com/IvanShafran/shared-preferences-mock.svg?branch=master)](https://travis-ci.com/IvanShafran/shared-preferences-mock)
 [![codecov](https://codecov.io/gh/IvanShafran/shared-preferences-mock/branch/master/graph/badge.svg)](https://codecov.io/gh/IvanShafran/shared-preferences-mock)
-[![](https://jitpack.io/v/IvanShafran/shared-preferences-mock.svg)](https://jitpack.io/#IvanShafran/shared-preferences-mock)
+[![Maven Central](https://img.shields.io/maven-central/v/io.github.ivanshafran/shared-preferences-mock.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22io.github.ivanshafran%22%20AND%20a:%22shared-preferences-mock%22)
 
 Shared preferences mock is the lightweight library let you increase coverage of unit tests and simplify code for them with one line of code.
 
@@ -17,12 +17,13 @@ Under the hood the library implements `SharedPreferences`, `Context.getSharedPre
 
 ## Download
 
+> **Important: changed since 1.2.0**
+
 Add it in your root build.gradle at the end of repositories:
 ```groovy
 allprojects {
     repositories {
-        ...
-        maven { url 'https://jitpack.io' }
+        mavenCentral()
     }
 }
 ```
@@ -31,7 +32,7 @@ Add the dependency:
 
 ```groovy
 dependencies {
-    testImplementation 'com.github.IvanShafran:shared-preferences-mock:1.1'
+    testImplementation 'io.github.ivanshafran:shared-preferences-mock:1.2.3'
 }
 ```
 
@@ -50,7 +51,18 @@ android {
 
 <details><summary><b>Click to see release notes</b></summary>
 
+<b>Version 1.2.3</b>
+    
+* First automatic release to maven central
+    
+<b>Version 1.2.1-1.2.2</b>
+    
+* Lost versions
 
+<b>Version 1.2.0</b>
+    
+* First release to maven central
+    
 <b>Version 1.1</b>
     
 * Android X support. Thanks to [Neal Sanche](https://github.com/nealsanche)
