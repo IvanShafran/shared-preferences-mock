@@ -49,6 +49,10 @@ android {
 ## Release notes
 
 <details><summary><b>Click to see release notes</b></summary>
+    
+<b>Version 1.2.4</b>
+    
+* Master branch to main
 
 <b>Version 1.2.3</b>
     
