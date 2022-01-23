@@ -48,7 +48,7 @@ afterEvaluate {
                     licenses {
                         license {
                             name = 'MIT License'
-                            url = 'https://github.com/IvanShafran/shared-preferences-mock/blob/master/LICENSE'
+                            url = 'https://github.com/IvanShafran/shared-preferences-mock/blob/main/LICENSE'
                         }
                     }
                     developers {
@@ -64,7 +64,7 @@ afterEvaluate {
                     scm {
                         connection = 'scm:git:github.com/IvanShafran/shared-preferences-mock.git'
                         developerConnection = 'scm:git:ssh://github.com/IvanShafran/shared-preferences-mock.git'
-                        url = 'https://github.com/IvanShafran/shared-preferences-mock/tree/master'
+                        url = 'https://github.com/IvanShafran/shared-preferences-mock/tree/main'
                     }
                 }
             }
