@@ -32,7 +32,8 @@ Add the dependency:
 
 ```groovy
 dependencies {
-    testImplementation 'io.github.ivanshafran:shared-preferences-mock:1.2.3'
+    // See the actual version above in the maven badge
+    testImplementation 'io.github.ivanshafran:shared-preferences-mock:x.y.z'
 }
 ```
 
