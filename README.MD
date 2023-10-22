@@ -1,7 +1,7 @@
 # Shared Preferences Mock
 ![Build](https://github.com/IvanShafran/shared-preferences-mock/actions/workflows/code-health-check.yml/badge.svg)
 [![codecov](https://codecov.io/gh/IvanShafran/shared-preferences-mock/branch/main/graph/badge.svg)](https://codecov.io/gh/IvanShafran/shared-preferences-mock)
-[![Maven Central](https://img.shields.io/maven-central/v/io.github.ivanshafran/shared-preferences-mock.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22io.github.ivanshafran%22%20AND%20a:%22shared-preferences-mock%22)
+[![Maven Central](https://img.shields.io/maven-central/v/io.github.ivanshafran/shared-preferences-mock.svg?label=Maven%20Central)](https://central.sonatype.com/artifact/io.github.ivanshafran/shared-preferences-mock)
 
 Shared preferences mock is a lightweight library that lets you increase coverage of unit tests and simplify code for them with one line of code.
 
